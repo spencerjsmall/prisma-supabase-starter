@@ -1,0 +1,33 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "prisma generate && prisma migrate deploy && nuxt build",
+    "dev": "supabase start && nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "prisma generate && nuxt prepare",
+    "db:stop": "supabase stop",
+    "db:apply": "npx prisma migrate dev",
+    "db:capture": "dotenv -- npx @snaplet/snapshot snapshot capture",
+    "db:seed": "npx @snaplet/snapshot snapshot restore",
+    "db:build": "supabase start && npm run db:capture && npm run db:seed",
+    "db:reset": "rm -rf .snaplet/snapshots && npm run db:build"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.20.0",
+    "@prisma/nuxt": "^0.0.35",
+    "nuxt": "^3.14.1592",
+    "snaplet": "^0.42.1",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/node": "^22.10.2",
+    "dotenv-cli": "^7.4.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
